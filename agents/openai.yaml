@@ -1,0 +1,3 @@
+interface:
+  display_name: "卡密平台无感充值打通"
+  short_description: "把已有应用商品与已有卡密平台接通，自动取码并完成权益到账"

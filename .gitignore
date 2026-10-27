@@ -1,0 +1,42 @@
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+cards/
+orders/
+exports/
+
+# Logs and local evidence
+*.log
+logs/
+*.sqlite
+*.sqlite3
+*.db
+
+# Generated packages
+dist/
+*.zip
+*.tgz
+*.tar.gz
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini

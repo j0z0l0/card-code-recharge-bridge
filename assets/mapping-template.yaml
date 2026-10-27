@@ -1,0 +1,16 @@
+# 应用商品与卡密平台商品映射
+# 仅供用户确认；不要在 Skill 中自动新增或修改商品。
+
+application: ""
+platform: ""
+
+products:
+  - application_product_id: ""
+    application_name: ""
+    application_price: 0
+    application_entitlement: ""
+    platform_goods_key: ""
+    platform_name: ""
+    platform_price: 0
+    verified_by: ""
+    notes: ""
