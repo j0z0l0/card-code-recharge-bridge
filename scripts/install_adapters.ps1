@@ -46,7 +46,7 @@ foreach ($target in $Targets) {
     Write-Host "Would copy $Source -> $dest"
   } else {
     New-Item -ItemType Directory -Force -Path $dest | Out-Null
-    $items = @('SKILL.md','README.md','LICENSE','SECURITY.md','CONTRIBUTING.md','CHANGELOG.md','agents','scripts','references','assets','adapters')
+    $items = @('SKILL.md','README.md','README.zh-CN.md','LICENSE','SECURITY.md','CONTRIBUTING.md','CHANGELOG.md','agents','scripts','references','assets','adapters')
     foreach ($item in $items) {
       $srcItem = Join-Path $Source $item
       if (-not (Test-Path -LiteralPath $srcItem)) { continue }

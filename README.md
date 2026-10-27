@@ -1,101 +1,117 @@
-# 卡密平台无感充值打通
+# Card-Code Recharge Bridge
 
-> 本 Skill 由 **Ai易道场** 在统一账户、计费与权益系统的实践中整理。  
-> 官网：[www.aiydc.com](https://www.aiydc.com)
+[English](README.md) | [简体中文](README.zh-CN.md)
 
-面向技术小白和试水商业化项目的跨工具 Skill。它只负责把用户已有应用商品与已有卡密平台商品接通，不设计商业模式、商品、价格或库存。
+> An open-source cross-tool AI Skill maintained by **Ai易道场**.  
+> Website: [www.aiydc.com](https://www.aiydc.com)
 
-## 成品介绍
+This Skill connects products and card-code items that the user already owns. It focuses only on the bridge between payment and fulfillment:
 
-完整的产品背景、方案思路、风险和接入说明见：
+```text
+Existing app product
+→ card-code platform checkout
+→ payment
+→ server-side payment query
+→ card-code retrieval
+→ existing redemption / entitlement flow
+→ seamless fulfillment
+```
+
+It does not design pricing, product tiers, inventory or business models.
+
+## Full guide
+
+A detailed implementation reference is available in Chinese:
 
 - [`references/product-overview.md`](references/product-overview.md)
 
-README 只提供快速说明；具体执行仍以 `SKILL.md` 和 `references/` 为准。
+The executable instructions are in `SKILL.md` and the relevant files under `references/`.
 
-## 流程
+## Supported workflow
 
 ```text
-扫描应用工作区
-→ 判断已有支付/兑换能力
-→ 分类平台链接
-→ 生成商品映射建议
-→ 输出方案并自我审核
-→ 用户授权
-→ 实施、测试、部署
-→ 交接
+Inspect the application workspace
+→ detect existing payment and redemption capabilities
+→ classify the card-platform link
+→ propose a product mapping
+→ produce a plan and self-review it
+→ obtain user authorization
+→ implement and test
+→ deploy only when approved
+→ hand off
 ```
 
-## 最小输入
+## Minimum input
 
-- 应用项目目录（当前工作区明确时不需要询问）
-- 卡密平台名称
-- 具体商品页链接（优先）
-- 可选：支付/收银台链接
-- 修改、测试、部署授权
+- Application project directory, unless the current workspace is already clear
+- Card-code platform name
+- Specific product-page URL, preferred
+- Optional checkout/payment URL
+- Authorization before code changes, tests or deployment
 
-平台凭据通过本地环境配置，不通过聊天发送。
+Platform credentials must be configured locally and must never be sent through chat.
 
-## 快速使用
+## Quick use
 
 ```text
 $card-code-recharge-bridge
 ```
 
-然后提供应用目录和卡密平台商品链接。
+Then provide the application directory and card-platform product URL.
 
-## 环境要求
+## Requirements
 
 - Python 3.10+
-- PowerShell 5.1+（仅 Windows 适配器安装脚本需要）
-- 无第三方 Python 依赖
+- PowerShell 5.1+ only for the Windows adapter installer
+- No third-party Python dependencies
 
-## 发布前校验
+## Validate before release
 
 ```bash
 python scripts/validate_skill.py .
 ```
 
-## 扫描工具
+## Inspection tools
 
 ```bash
-python scripts/inspect_app.py <应用目录>
-python scripts/classify_platform_link.py "<平台链接>"
+python scripts/inspect_app.py <application-directory>
+python scripts/classify_platform_link.py "<platform-link>"
 ```
 
-## 安装到本机工具
+## Install adapters
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/install_adapters.ps1 -WhatIf
 powershell -ExecutionPolicy Bypass -File scripts/install_adapters.ps1
 ```
 
-可选安装豆包提示词包：
+Optional Doubao prompt pack:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts/install_adapters.ps1 -Targets doubao
 ```
 
-## 实测安全规则
+## Real-payment safety rules
 
-- 真实付款测试必须先取得用户明确同意；
-- 对账完成前不清理订单、支付事件、卡密和权益记录；
-- Skill 只负责打通支付结果与已有权益，不默认扩展到余额、会员或返赠体系。
+- Explicit user consent is required before a real-payment test.
+- Do not delete orders, payment events, card codes, guest identities or entitlement records before reconciliation is complete.
+- The Skill connects payment results to existing entitlements only. It does not expand into balance, membership, referral or bonus systems by default.
 
-## 开源许可
+## Security and contributions
 
-本项目采用 [MIT License](LICENSE)。可以免费使用、修改、分发和商用，但必须保留版权与许可证声明。
+See [SECURITY.md](SECURITY.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
 
-安全问题和贡献方式见 [SECURITY.md](SECURITY.md) 与 [CONTRIBUTING.md](CONTRIBUTING.md)。
+## License
 
-## 推广与隶属关系声明
+This project is released under the [MIT License](LICENSE). You may use, modify, distribute and commercialize it, provided that the copyright and license notices are retained.
 
-README 中的 Ai易道场官网和邀请码属于项目作者的推广链接。项目与 Codex、Claude Code、Hermes、Trae、Zcode、豆包及其他第三方工具或卡密平台不存在隶属、授权或背书关系。
+## Promotion and affiliation
 
-## 风险边界
+The Ai易道场 website and referral code in this repository are project-author promotional links. This project is not affiliated with, authorized by, or endorsed by Codex, Claude Code, Hermes, Trae, Zcode, Doubao, or any third-party card-code platform.
 
-- 第三方卡密平台可能改版、限流或停止发卡；
-- 适合验证付费和试运行；
-- 收入稳定后应迁移到官方支付；
-- 技术兜底不能替代用户承担支付与经营合规责任。
+## Risk notice
 
+- Third-party card-code platforms may change APIs, impose limits, suspend stores or stop issuing cards.
+- This approach is suitable for payment validation and early operation, not as a permanent primary payment channel.
+- A stable business should migrate to an official payment channel.
+- Technical safeguards do not replace the operator's payment, tax and regulatory responsibilities.

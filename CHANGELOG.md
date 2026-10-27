@@ -6,6 +6,7 @@
 - Clarified that the Skill connects payment results to existing entitlements only and does not expand into balance, membership or referral systems by default.
 - Added a test-evidence template.
 - Added open-source release files: MIT License, security policy, contribution guide, ignore rules and CI validation.
+- Made English the default repository README and added `README.zh-CN.md` as the Simplified Chinese translation.
 
 ## 1.0.1
 
